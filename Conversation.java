@@ -1,11 +1,11 @@
 //package org.apache.commons.collections4;
 import java.util.Scanner;
 import java.util.Random;
-//import java.util.Arrays;
+import java.util.Arrays;
 //import java.lang.Object;
 
 
-import java.util.Collections;
+//import java.util.Collections;
 
 class Conversation {
 
@@ -22,7 +22,7 @@ class Conversation {
     //String[] punctuation = {"You", "you", "me", "are"};
    
     boolean isReplaced = false;
-    Integer MirroredSentence = 0;
+    boolean MirroredSentence = false;
     Integer index_random = 0;
 
 
@@ -35,7 +35,7 @@ class Conversation {
       //String[] words = sentence.next().toWordArray();
       //String ChatMessage = sentence.nextLine();
       String[] words = ChatMessage.split(" ");
-      
+      MirroredSentence = false;
         for(int j = 0; j<words.length; j++){
           String r = "";
           isReplaced = false;
@@ -45,24 +45,26 @@ class Conversation {
                 // System.out.println(words);
                 r += replacements[k] + " ";
                 isReplaced = true;
-                MirroredSentence = 1;
+                MirroredSentence = true;
                 //r[i] = replacements[k];
             }
           
   
           } 
           // if r
-            if (isReplaced == false && j+1 != words.length) {r += words[j] + " ";}
+            if (isReplaced == false && j+1 != words.length && MirroredSentence == false) {r += words[j] + " ";}
 
             
-            if (isReplaced == false && j+1 == words.length)
+            if (isReplaced == false && j+1 == words.length && MirroredSentence == true)
             {//words[j]=last_word;
               //last_word
-              r += words[j]
-              +"?"
-              ;};
-
+              r += words[j] +"?";
               System.out.print(r);
+            }
+              ;
+            
+           
+              
 
             // if (MirroredSentence = false) {
             //     Random random = new Random();
